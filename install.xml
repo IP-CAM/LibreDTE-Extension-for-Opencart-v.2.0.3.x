@@ -36,8 +36,10 @@
             $linkpdf =  $query->row['linkpdf'];
             $linkxml =  $query->row['linkxml'];
             $mailenviado = $query->row['mail_sent'];
+			$rsocial = $query->row['rsocial'];
 			$observ = $query->row['obs'];
 			$data['observacion'] = $observ;
+			$data['rsocial'] = $rsocial;
 			$data['mailenviado'] = $mailenviado;
               $data['enviado'] = $mailenviado?'Enviado!':'No Enviado';
             }
@@ -118,7 +120,30 @@
 
 		$this->response->addHeader('Content-Type: text/html');
 		$this->response->setOutput($json);
-		}				
+		}	
+
+		public function editRsocial() {
+			$this->load->language('sale/order');
+      		if (!$this->user->hasPermission('modify', 'sale/order')) {
+			$json = $this->language->get('error_permission');
+		} elseif (isset($this->request->get['order_id'])) {
+			if (isset($this->request->get['order_id'])) {
+				$order_id = $this->request->get['order_id'];
+			} else {
+				$order_id = 0;
+			}
+
+			$this->load->model('sale/order');
+			
+			$query =  $this->db->query("UPDATE `" . DB_PREFIX . "libredte` SET rsocial = '" . $this->request->get['rsocial'] . "' WHERE order_id = " . (int)$order_id);
+		
+            $json = "ok";
+		
+		}
+
+		$this->response->addHeader('Content-Type: text/html');
+		$this->response->setOutput($json);
+		}			
 		
 	
 		public function sendMail() {
@@ -854,6 +879,13 @@ getContribuyente();
                   {% endif %}</td>
               </tr>
 			  <tr>
+			  <td>RS:</td>
+			  <td><input type="text" name="txtrsocial" id="txtrsocial" size="25" maxlength="50" value="{{ rsocial }}"></td>
+			  <td style="width: 1%;" class="text-center">
+			  <button id="button-rsocial" class="btn btn-success btn-xs"><i class="fa fa-refresh"></i></button>
+			  </td>
+			  </tr>		
+			  <tr>
 			  <td>Obs:</td>
 			  <td><input type="text" name="txtobs" id="txtobs" size="25" maxlength="50" value="{{ observacion }}"></td>
 			  <td style="width: 1%;" class="text-center">
@@ -937,6 +969,26 @@ $(document).delegate('#button-email', 'click', function() {
 		success: function(html) {
 			$('.alert-dismissible').remove();
 				$('#button-obs').replaceWith('<button id="button-obs" disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-cog"></i></button>');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+	$(document).delegate('#button-rsocial', 'click', function() {
+	$.ajax({
+		url: 'index.php?route=sale/order/editrsocial&user_token={{ user_token }}&order_id={{ order_id }}&rsocial=' + encodeURIComponent($('#txtrsocial').val()),
+		dataType: 'html',
+		beforeSend: function() {
+			$('#button-rsocial').button('loading');
+		},
+		complete: function() {
+			$('#button-rsocial').button('reset');
+		},
+		success: function(html) {
+			$('.alert-dismissible').remove();
+				$('#button-rsocial').replaceWith('<button id="button-rsocial" disabled="disabled" class="btn btn-success btn-xs"><i class="fa fa-cog"></i></button>');
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
