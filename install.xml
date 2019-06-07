@@ -60,6 +60,25 @@
               
 			} else {
 				$data['invoice_no'] = '';
+				$query =  $this->db->query("SELECT * FROM `" . DB_PREFIX . "libredte` WHERE order_id = " . (int)$order_id);  
+				if ($query->num_rows) {
+            
+            $linkpdf =  $query->row['linkpdf'];
+            $linkxml =  $query->row['linkxml'];
+            $mailenviado = $query->row['mail_sent'];
+			$rsocial = $query->row['rsocial'];
+			$observ = $query->row['obs'];
+			$data['observacion'] = $observ;
+			$data['rsocial'] = $rsocial;
+			$data['mailenviado'] = $mailenviado;
+              $data['enviado'] = $mailenviado?'Enviado!':'No Enviado';
+            }
+              else
+              {
+              $data['mailenviado'] = 0;
+              $data['enviado'] = 'No Enviado';  
+              }				
+				
 			}     
                 
 			$data['invoice'] = $this->url->link('sale/order/imprimir', 'user_token=' . $this->session->data['user_token'] . '&order_id=' . (int)$this->request->get['order_id'], true);
