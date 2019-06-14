@@ -1508,7 +1508,7 @@ getContribuyente();
     </div>
   </div>
   <div><br />
-<font color="red">(Si prefiere retirar en una Sucursal Chilexpress, en Dirección de Envío indique el nombre y la dirección de la Sucursal que corresponda)</font>
+<font color="red">(Si prefiere retirar en una Sucursal Chilexpress, en Dirección de Envío indique el Nombre de la Sucursal que corresponda, sin dirección)</font>
 <br />
 <a href="http://www.chilexpress.cl/sucursales-servicio-courier-envios-carga-chile" target="_blank">Ver Sucursales</a></div>
 			]]></add>
