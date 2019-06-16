@@ -864,6 +864,11 @@ getContribuyente();
 		<operation>
 			<search><![CDATA[$order_id = $this->db->getLastId();]]></search>
 			<add position="after"><![CDATA[
+			if ($data['payment_boletaofactura'] != 'factura'){
+			if ($data['payment_boletaofactura'] != 'boleta'){
+			$data['payment_boletaofactura'] = 'boleta';
+			}
+			}
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "libredte` SET order_id = '" . $order_id . "', boletaofactura = '" . $this->db->escape($data['payment_boletaofactura']) . "', rut = '" . $this->db->escape($data['payment_rut']) . "', rsocial = '" . $this->db->escape($data['payment_rsocial']) . "', giro = '" . $this->db->escape($data['payment_giro']) . "', oc = '" . $this->db->escape($data['payment_oc']) . "', fecha_oc = '" . $this->db->escape($data['payment_fecha_oc']) . "', obs = '" . $this->db->escape($data['payment_obs']) . "', mail_sent = 0");
 				]]></add>
 		</operation>
