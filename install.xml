@@ -208,7 +208,15 @@
 			}
 			if (!empty($linkpdf)){
 			$archivopdf = DIR_UPLOAD . "dte_" . $dateTime . ".pdf";
-			$source = file_get_contents($linkpdf);
+			
+			$arrContextOptions=array(
+			"ssl"=>array(
+			"verify_peer"=>false,
+			"verify_peer_name"=>false,
+			),
+			);
+			
+			$source = file_get_contents($linkpdf, false, stream_context_create($arrContextOptions));
 			file_put_contents($archivopdf, $source);
 
 			$salida = shell_exec("lp " . $archivopdf);
@@ -275,10 +283,21 @@
         $archivopdf = DIR_UPLOAD . "dte_" . $order_info['invoice_no'] . ".pdf";
 		$archivoxml = DIR_UPLOAD . "dte_" . $order_info['invoice_no'] . ".xml";
         }  
-		$source = file_get_contents($linkpdf);
+		
+		$arrContextOptions=array(
+		"ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+		),
+		);  
+		
+		$source = file_get_contents($linkpdf, false, stream_context_create($arrContextOptions));
+		//$source = file_get_contents($linkpdf);
 		file_put_contents($archivopdf, $source);
-		$source = file_get_contents($linkxml);	
-		file_put_contents($archivoxml, $source);		
+		
+		$source = file_get_contents($linkxml, false, stream_context_create($arrContextOptions));
+		//$source = file_get_contents($linkxml);	
+		file_put_contents($archivoxml, $source);				
 		
 		$language = new Language($order_info['language_code']);
 		$language->load($order_info['language_code']);
