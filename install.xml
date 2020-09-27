@@ -520,6 +520,13 @@ $_['error_rsocial']           	     = 'La Razón Social debe tener entre 5 y 50 
 				]]></add>
 		</operation>
 		<operation>
+			<search><![CDATA[<label class="control-label" for="input-payment-address-2">{{ entry_address_2 }} Solo use esta línea si la dirección no cabe completa en la Línea 1</label>]]></search>
+			<add position="replace" offset="1"><![CDATA[
+			<label class="control-label" for="input-payment-address-2" style="display: none;">{{ entry_address_2 }} Solo use esta línea si la dirección no cabe completa en la Línea 1</label>
+			<input type="text" name="address_2" value="{{ address_2 }}" placeholder="Solo use esta línea si la dirección no cabe completa en la Línea 1" id="input-payment-address-2" class="form-control" style="display: none;" />
+				]]></add>
+		</operation>
+		<operation>
 			<search><![CDATA[<input type="radio" name="customer_group_id" value="{{ customer_group.customer_group_id }}" />]]></search>
 			<add position="replace" offset="4"><![CDATA[
             <input type="radio" name="customer_group_id" value="{{ customer_group.customer_group_id }}" />
@@ -1222,6 +1229,14 @@ $(document).delegate('#button-email', 'click', function() {
 		</div>
         </div>		
 				]]></add>
+		</operation>	
+		<operation>
+			<search><![CDATA[<label class="col-sm-2 control-label" for="input-payment-address-2">{{ entry_address_2 }}</label>]]></search>
+			<add position="replace" offset="2"><![CDATA[
+			<label class="col-sm-2 control-label" for="input-payment-address-2" style="display: none;">{{ entry_address_2 }}</label>
+      <div class="col-sm-10">
+        <input type="text" name="address_2" value="" placeholder="Solo use esta línea si la dirección no cabe completa en la Línea 1" id="input-payment-address-2" class="form-control" style="display: none;" />
+				]]></add>
 		</operation>
 		<operation>
 			<search><![CDATA[// Sort the custom fields]]></search>
@@ -1530,6 +1545,14 @@ getContribuyente();
 	</file>			
 <file path="catalog/view/theme/default/template/checkout/shipping_address.twig">
 		<operation>
+			<search><![CDATA[<label class="col-sm-2 control-label" for="input-shipping-address-2">{{ entry_address_2 }}</label>]]></search>
+			<add position="replace" offset="2"><![CDATA[
+			<label class="col-sm-2 control-label" for="input-shipping-address-2" style="display: none;">{{ entry_address_2 }}</label>
+			<div class="col-sm-10">
+			<input type="text" name="address_2" value="" placeholder="Solo use esta línea si la dirección no cabe completa en la Línea 1" id="input-shipping-address-2" class="form-control" style="display: none;" />
+				]]></add>
+		</operation>
+		<operation>
 			<search><![CDATA[<div class="buttons clearfix">]]></search>
 			<add position="replace" offset="5"><![CDATA[
   <div class="buttons clearfix">
@@ -1559,5 +1582,15 @@ getContribuyente();
 			$('input[name=\'payment_address\']').focus();	
 				]]></add>
 		</operation>		
-	</file>				
+	</file>
+<file path="catalog/view/theme/default/template/checkout/guest_shipping.twig">
+		<operation>
+			<search><![CDATA[<label class="col-sm-2 control-label" for="input-shipping-address-2">{{ entry_address_2 }}</label>]]></search>
+			<add position="replace" offset="2"><![CDATA[
+			    <label class="col-sm-2 control-label" for="input-shipping-address-2" style="display: none;">{{ entry_address_2 }}</label>
+				<div class="col-sm-10">
+				<input type="text" name="address_2" value="{{ address_2 }}" placeholder="Solo use esta línea si la dirección no cabe completa en la Línea 1" id="input-shipping-address-2" class="form-control" style="display: none;" />
+				]]></add>
+		</operation>
+</file>			
 </modification>
