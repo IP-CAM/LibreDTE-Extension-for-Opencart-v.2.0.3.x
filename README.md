@@ -1,38 +1,46 @@
-Plugin LibreDTE para OpenCart
-=============================
+LibreDTE plugin for OpenCart 3
+===============================
 
-Este plugin permite integrar OpenCart 3 con la aplicación web de LibreDTE.
+This plugin allows you to integrate OpenCart 3 with the LibreDTE web application.
 
-El plugin ha sido probado con Opencart 3.0.2.0
+The plugin has been tested with Opencart 3.0.2.0
 
-Si desea una versión compatible con OpenCart 2 revisar [aquí](https://github.com/LibreDTE/libredte-plugin-opencart/releases/tag/v2.0.0-alpha).
+If you want a version compatible with OpenCart 2 check [here] (https://github.com/LibreDTE/libredte-plugin-opencart/releases/tag/v2.0.0-alpha).
 
-Funcionalidades implementadas:
+Implemented functionalities:
 
-- API para obtener datos de los items desde la página de emisión de LibreDTE.
-- Enlaces directos a la aplicación de LibreDTE utilizando preautenticación.
-- Generación de factura o boleta desde la página de orden de compra de OpenCart.
-- Acceso desde la página de la orden de compra a la página del DTE en LibreDTE.
-- Envío por correo electrónico al emitir el documento en OpenCart.
+- API to obtain item data from the LibreDTE issuance page.
+- Direct links to the LibreDTE application using pre-authentication.
+- Generation of invoice or ticket from the OpenCart purchase order page.
+- Access from the purchase order page to the DTE page in LibreDTE.
+- Sending by email when issuing the document in OpenCart.
 
-Licencia
+License
 --------
 
-Este código está liberado bajo la licencia de software libre [AGPL](http://www.gnu.org/licenses/agpl-3.0.en.html).
-Para detalles sobre cómo se puede utilizar, modificar y/o distribuir este plugin revisar los términos de la licencia.
-También tiene detalles, en español, sobre esto en los [términos y condiciones](https://wiki.libredte.cl/doku.php/terminos) de LibreDTE.
+This code is released under the free software license [AGPL] (http://www.gnu.org/licenses/agpl-3.0.en.html).
+For details on how you can use, modify and / or distribute this plugin check the license terms.
+It also has details, in Spanish, about this in the [terms and conditions] (https://wiki.libredte.cl/doku.php/terminos) of LibreDTE.
 
 API
 ---
 
 ### URL items
 
-Para configurar la lectura de códigos desde la plataforma LibreDTE, por ejemplo, usando el SKU del producto, se debe configurar la URL:
+To configure the reading of codes from the LibreDTE platform, for example, using the product SKU, the URL must be configured:
 
     http://www.mitienda.cl/index.php?route=libredte/product&codigo=
 
-Por ejemplo:
+For example:
 
     https://altronics.cl/index.php?route=libredte/product&codigo=
 
-La columna a usar, en este caso el ejemplo se indica SKU, se asigna en la configuración del plugin en OpenCart.
+The column to use, in this case the example is indicated SKU, it is assigned in the plugin configuration in OpenCart.
+
+Contribute to the project
+----------------------
+
+If you want to contribute to the project, especially solving any of the
+[* open * issues] (https://github.com/LibreDTE/libredte-plugin-opencart/issues) you must:
+
+1. Fork the project on [GitHub] (https://github.com/LibreDTE/libredte-plugin-opencart)
